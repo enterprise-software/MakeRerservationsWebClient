@@ -6,8 +6,10 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HotelService {
+  hotels: any = [];
 // Base url
-  baseurl = 'https://makehotelreservationsrestapi20190902100457.azurewebsites.net';
+  //baseurl = 'https://makehotelreservationsrestapi20190902100457.azurewebsites.net';
+  baseurl = 'https://localhost:5001';
   constructor(private http: HttpClient) { }
   // Http Headers
   httpOptions = {
@@ -24,8 +26,18 @@ export class HotelService {
       catchError(this.errorHandl)
     )
   }
+
+    // POST
+    CreateHotel(data: any): Observable<Object> {
+      return this.http.post<Object>(this.baseurl + '/api/hotel', JSON.stringify(data), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
+    } 
+
   // Error handling
-  errorHandl(error) {
+  errorHandl(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
       // Get client-side error
@@ -37,6 +49,8 @@ export class HotelService {
     console.log(errorMessage);
     return throwError(errorMessage);
  }
+
+
 }
 
 

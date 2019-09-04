@@ -50,10 +50,17 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+import { AppRoutingModule } from './app-routing.module';
+import { HotelListComponent } from './hotel-list/hotel-list.component';
+import { SearchComponent } from './search/search.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HotelListComponent,
+    SearchComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +104,8 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

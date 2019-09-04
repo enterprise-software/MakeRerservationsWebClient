@@ -1,0 +1,52 @@
+<!-- wrapper -->
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <form [formGroup]="searchForm" (ngSubmit)="submitForm()" novalidate>
+      <!-- City -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Ciudad de destino" formControlName="city">
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('city', 'required')">
+          Debe ingresar una <strong>ciudad de destino</strong>
+        </mat-error>
+      </mat-form-field>
+      <!--Fecha de entrada-->
+      <mat-form-field>
+        <input matInput readonly [matDatepicker]="pickerDateFrom" placeholder="Fecha de entrada" formControlName="dateFrom"
+          (dateChange)="dateFrom($event)">
+        <mat-datepicker-toggle matSuffix [for]="pickerDateFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDateFrom></mat-datepicker>
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('dateFrom', 'required')">
+          Debe ingresar una <strong>fecha de entrada</strong>
+        </mat-error>
+      </mat-form-field>
+      
+      <!--Fecha de salida-->
+      <mat-form-field>
+        <input matInput readonly [matDatepicker]="pickerDateTo" placeholder="Fecha de salida" formControlName="dateTo"
+          (dateChange)="dateTo($event)">
+        <mat-datepicker-toggle matSuffix [for]="pickerDateTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDateTo></mat-datepicker>
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('dateTo', 'required')">
+          Debe ingresar una <strong>fecha de salida</strong>
+        </mat-error>
+      </mat-form-field>            
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Cantidad de personas" formControlName="totalPeople" type="number" min="1">
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('totalPeople', 'required')">
+          Debe ingresar <strong>cantidad de personas</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Submit -->
+      <div class="button-wrapper">
+        <button mat-flat-button color="primary">Buscar</button>
+      </div>
+
+    </form>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,73 @@
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <form [formGroup]="hotelForm" (ngSubmit)="submitForm()" novalidate>
+      <!-- Name -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nombre" formControlName="name">
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('name', 'required')">
+          Debe ingresar un <strong>nombre</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Description -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Descripción" formControlName="description">
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('description', 'required')">
+          Debe ingresar una <strong>descripción</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Description -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Teléfono principal" formControlName="mainPhoneNumber">
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('mainPhoneNumber', 'required')">
+          Debe ingresar un <strong>teléfono</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Description -->
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Ciudad" formControlName="city">
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('city', 'required')">
+            Debe ingresar una <strong>ciudad</strong>
+          </mat-error>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="isActive" disabled>Activo</mat-checkbox>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="number" formControlName="travelAgentId" readonly>
+      </mat-form-field>
+
+      <div>
+          <button  (click) ="addRoom()" mat-flat-button color="secondary">Adicionar cuartos</button>
+        </div>
+      <div formArrayName="rooms" *ngFor="let item of hotelForm.get('rooms').controls; let i = index;">
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <input matInput formControlName="number" type="number" placeholder="Número">
+          </mat-form-field>
+          <mat-form-field>          
+            <input matInput formControlName="description" placeholder="Descripción">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="floor" placeholder="Piso">
+          </mat-form-field>
+           <mat-checkbox formControlName="isActive" disabled>Activo</mat-checkbox>
+           <mat-form-field class="example-full-width">
+              <input matInput type="number" formControlName="roomTypeId" readonly>
+            </mat-form-field>
+        </div>
+      </div> 
+
+      <!-- Submit -->
+      <div class="button-wrapper">
+        <button mat-flat-button color="primary">Guardar</button>
+      </div>
+    </form>
+  </mat-sidenav-content>
+</mat-sidenav-container>

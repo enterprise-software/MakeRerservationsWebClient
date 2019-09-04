@@ -1,0 +1,14 @@
+p {
+    font-family: Lato;
+  }
+  
+  .example-card {
+    max-width: 300px;
+    margin: 4px;
+    display: inline-block;
+  }
+  
+  .example-header-image {
+    background-image: url('https://cdn.pixabay.com/photo/2016/11/30/17/10/web-1873373_960_720.png');
+    background-size: cover;
+  }
